@@ -315,7 +315,6 @@ void moveto(double r, double theta) {
 }
 
 void rotate(double deg) {
-  // broken
     set_max_accel(_max_accel_);
     double base_circumference = pi * _base_diameter_;
     double wheel_circumference = pi * _wheel_diameter_;
