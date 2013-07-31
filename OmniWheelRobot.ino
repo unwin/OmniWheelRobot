@@ -284,8 +284,8 @@ void stop_all() {
 
 void moveto(double r, double theta) {
     double theta_rad = pi / 180.0 * theta;
-    double x = (1.0 * r) * cos(theta_rad);
-    double y = (1.0 * r) * sin(theta_rad);
+    double x = r * cos(theta_rad);
+    double y = r * sin(theta_rad);
     double wheel_circumference = pi * _wheel_diameter_;
     double cm_per_step = wheel_circumference / steps_per_rev[_step_];
     double x_steps = x / cm_per_step;
@@ -293,14 +293,14 @@ void moveto(double r, double theta) {
 
     if (abs(x_steps) > abs(y_steps)) {
       double slow_percent = abs(y_steps / x_steps); 
-      double slow_speed = slow_percent * (1.0 * _max_accel_);
+      double slow_speed = slow_percent * _max_accel_;
       stepper0.setAcceleration(_max_accel_);
       stepper1.setAcceleration(_max_accel_);
       stepper2.setAcceleration(slow_speed);
       stepper3.setAcceleration(slow_speed); 
     } else if (abs(x_steps) < abs(y_steps)) {
       double slow_percent = abs(x_steps / y_steps); 
-      double slow_speed = slow_percent * (1.0 * _max_accel_);
+      double slow_speed = slow_percent * _max_accel_;
       stepper0.setAcceleration(slow_speed);
       stepper1.setAcceleration(slow_speed);
       stepper2.setAcceleration(_max_accel_);
